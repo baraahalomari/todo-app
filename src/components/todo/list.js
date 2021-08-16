@@ -1,9 +1,7 @@
 import React, { useContext,useEffect,useState } from 'react';
 import { ListContext } from '../../context/listContext';
 import { SettingContext } from '../../context/settingsContext';
-
 function TodoList(props) {
-
   const listContext = useContext(ListContext);
   const settingsContext = useContext(SettingContext);
   const [page,setpage] = useState(0);
@@ -21,9 +19,7 @@ function TodoList(props) {
       setList(temp);
     }
   },[])
-
   useEffect(()=>{
-    
     if(settingsContext.view){
       setList(listContext.list)
     }else{
@@ -35,7 +31,7 @@ function TodoList(props) {
       })
       setList(temp);
     }
-  },[settingsContext.view])
+  },[listContext.list])
   function nextPage(){
     settingsContext.nextpage();
     setpage(page+1);
@@ -76,9 +72,9 @@ function TodoList(props) {
         }
       })}
     </ul>
-    {page>0&&<button onClick={prePage}>Previous</button>}
-    {!(page==(Math.ceil(listContext.list.length/settingsContext.numberOfItems)-1))&&<button onClick={nextPage}>Next</button>}
-    <button onClick={()=>{settingsContext.setSettings(null,!settingsContext.view)}}>Toggle View Completed Items</button>
+    {page>0&&<button onClick={prePage}>prev</button>}
+    {!(page==(Math.ceil(listContext.list.length/settingsContext.numberOfItems)-1))&&<button onClick={nextPage}>next</button>}
+    {/* <button onClick={()=>{settingsContext.setSettings(null,!settingsContext.view)}}>view</button> */}
     </>
   );
 }
