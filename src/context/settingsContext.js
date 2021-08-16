@@ -11,11 +11,8 @@ function SettingsContext(props) {
 
 
   function setSettings(numb, val) {
-    if (numb) {
       setNumberOfItems(numb)
-    }
-
-    setView(val);
+      setView(val);
 
   }
 
