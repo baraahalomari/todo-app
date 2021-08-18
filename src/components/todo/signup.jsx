@@ -17,9 +17,9 @@ const SignUp = () => {
 		setPassword(e.target.value);
 	}
 
-	function handleChangeEmail(e) {
-		setEmail(e.target.value);
-	}
+	// function handleChangeEmail(e) {
+	// 	setEmail(e.target.value);
+	// }
 
 	function handleChangeRole(e) {
 		setRole(e.target.value);
@@ -38,8 +38,8 @@ const SignUp = () => {
 			<Else>
 				
 				<form onSubmit={handleSubmitSignup} style={{marginLeft :'16%'}}>
-					<input	type="email" name="email" placeholder="Enter Email" onChange={handleChangeEmail}
-					  style={{borderRadius :'50px' , width:'25%'}}/>
+					{/* <input	type="email" name="email" placeholder="Enter Email" onChange={handleChangeEmail} */}
+					  {/* style={{borderRadius :'50px' , width:'25%'}}/> */}
 					<input type="text" name="username" placeholder="Enter Username" onChange={changeUsername}
 					 style={{borderRadius :'50px' , width:'20%'}}/>
 					<input type="password"	name="password" placeholder="Enter password" onChange={changePassword}  style={{borderRadius :'50px' , width:'20%'}}/>
