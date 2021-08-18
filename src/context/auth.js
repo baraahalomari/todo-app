@@ -3,7 +3,7 @@ import cookie from 'react-cookies';
 import jwt from 'jsonwebtoken';
 import superagent from 'superagent';
 import base64 from 'base-64';
-const API = 'https://auth-server-401.herokuapp.com/';
+const API = 'https://auth-server-401.herokuapp.com';
 export const AuthContext = React.createContext();
 
 
