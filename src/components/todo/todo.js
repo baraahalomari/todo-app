@@ -1,73 +1,49 @@
-import React from 'react';
-import TodoForm from './form.js';
-import TodoList from './list.js';
+import React, { useEffect, useState } from 'react';
+import Form from './form';
+import Header from './header';
+import List from './list';
+import { v4 as uuid } from 'uuid';
+import "@blueprintjs/core/lib/css/blueprint.css";
 
-import './todo.scss';
 
-class ToDo extends React.Component {
+const ToDo = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      list: [],
-    };
+  const [list, setList] = useState([]);
+  const [incomplete, setIncomplete] = useState([]);
+
+  function addItem(item) {
+    let data = { id: uuid(), text: item.text, assignee: item.assignee, complete: false, difficulty: item.difficulty }
+    setList([...list, data]);
   }
 
-  addItem = (item) => {
-    item._id = Math.random();
-    item.complete = false;
-    this.setState({ list: [...this.state.list, item]});
-  };
 
-  toggleComplete = id => {
+  function toggleComplete(id) {
 
-    let item = this.state.list.filter(i => i._id === id)[0] || {};
+    const items = list.map(item => {
+      if (item.id == id) {
+        item.complete = !item.complete;
+      }
+      return item;
+    });
 
-    if (item._id) {
-      item.complete = !item.complete;
-      let list = this.state.list.map(listItem => listItem._id === item._id ? item : listItem);
-      this.setState({list});
-    }
+    setList(items);
 
-  };
-
-  componentDidMount() {
-    let list = [
-      { _id: 1, complete: false, text: 'Clean the Kitchen', difficulty: 3, assignee: 'Person A'},
-      { _id: 2, complete: false, text: 'Do the Laundry', difficulty: 2, assignee: 'Person A'},
-      { _id: 3, complete: false, text: 'Walk the Dog', difficulty: 4, assignee: 'Person B'},
-      { _id: 4, complete: true, text: 'Do Homework', difficulty: 3, assignee: 'Person C'},
-      { _id: 5, complete: false, text: 'Take a Nap', difficulty: 1, assignee: 'Person B'},
-    ];
-
-    this.setState({list});
   }
 
-  render() {
-    return (
-      <>
-        <header>
-          <h2>
-          There are {this.state.list.filter(item => !item.complete).length} Items To Complete
-          </h2>
-        </header>
+  useEffect(() => {
+    let incompleteCount = list.filter(item => !item.complete).length;
+    setIncomplete(incompleteCount);
+    document.title = `To Do List: ${incomplete}`;
+  }, [list]);
 
-        <section className="todo">
-
-          <div>
-            <TodoForm handleSubmit={this.addItem} />
-          </div>
-
-          <div>
-            <TodoList
-              list={this.state.list}
-              handleComplete={this.toggleComplete}
-            />
-          </div>
-        </section>
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Header />
+      <h1>To Do List: {incomplete} items pending</h1>
+      <Form addItem={addItem} />
+      <List list={list} toggleComplete={toggleComplete} />
+    </>
+  );
+};
 
 export default ToDo;
