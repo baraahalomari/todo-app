@@ -1,87 +1,77 @@
-import React, { useContext,useEffect,useState } from 'react';
-import { ListContext } from '../../context/listContext';
-import { SettingContext } from '../../context/settingsContext';
+import React, { useState, useContext, useEffect } from 'react';
+import { settingContext } from '../../context/settingsContext';
 
-function TodoList(props) {
 
-  const listContext = useContext(ListContext);
-  const settingsContext = useContext(SettingContext);
-  const [page,setpage] = useState(0);
-  const [list,setList] = useState([]);
-  useEffect(()=>{
-    if(settingsContext.view){
-      setList(listContext.list)
-    }else{
-      let temp = [];
-      temp = listContext.list.filter((item)=>{
-        if(!item.complete){
-          return(item);
-        }
-      })
-      setList(temp);
-    }
-  },[])
-
-  useEffect(()=>{
+function List(props) {
+    const settingsContext = useContext(settingContext);
+    const [activeList, setActiveList] = useState([]);
+    const [activePage, setActivePage] = useState(1);
+    const [numOfPages, setNumOfPages] = useState(Math.ceil(props.list.length / settingsContext.itemPerPage));
     
-    if(settingsContext.view){
-      setList(listContext.list)
-    }else{
-      let temp = [];
-      temp = listContext.list.filter((item)=>{
-        if(!item.complete){
-          return(item);
+    useEffect(() => {
+        let start = (activePage - 1) * settingsContext.itemPerPage;
+        let end = start + settingsContext.itemPerPage;
+        setNumOfPages(Math.ceil(props.list.length / settingsContext.itemPerPage));
+        setActiveList(props.list.slice(start, end));
+    }, [props.list.length]);
+
+    useEffect(() => {
+
+        if (settingsContext.showCompleted) {
+            let start = (activePage - 1) * settingsContext.itemPerPage;
+            let end = start + settingsContext.itemPerPage;
+            setActiveList(props.list.slice(start, end));
+            setNumOfPages(Math.ceil(props.list.length / settingsContext.itemPerPage));
+        } else {
+            let temp = props.list.filter((item) => {
+                return item.complete === false
+            })
+            let start = (activePage - 1) * settingsContext.itemPerPage;
+            let end = start + settingsContext.itemPerPage;
+            setActiveList(temp.slice(start, end));
+            setNumOfPages(Math.ceil(temp.length / settingsContext.itemPerPage))
         }
-      })
-      setList(temp);
+    }, [activePage, settingsContext.showCompleted]);
+
+
+    function changeActivePage(num) {
+        
+        setActivePage(num);
     }
-  },[settingsContext.view])
-  function nextPage(){
-    settingsContext.nextpage();
-    setpage(page+1);
-  }
-  function prePage(){
-    settingsContext.previouspage();
-    setpage(page-1);
-  }
-  function modifyList(id){
-    listContext.toggleComplete(id);
-    if(settingsContext.view){
-      setList(listContext.list)
-    }else{
-      let temp = [];
-      temp = listContext.list.filter((item)=>{
-        if(!item.complete){
-          return(item);
-        }
-      })
-      setList(temp);
+
+    function toggleView() {
+        settingsContext.setShowCompleted(!settingsContext.showCompleted);
     }
-  }
-  return (
-    <>
-    <ul>
-      {list.map((item,idx) => {
-        if (idx >= settingsContext.start &&idx <= settingsContext.end) {  
-          return (
-            <li
-            className={`complete-${item.complete.toString()}`}
-            key={item._id}
-            >
-              <span onClick={() => modifyList(item._id)}>
-                {item.text}
-              </span>
-            </li>
-          )
+
+    const pages = () => {
+
+        let page = [];
+        for (let i = 1; i <= numOfPages; i++) {
+            page.push(<button onClick={() => { changeActivePage(i) }} key={i}>{i}</button>)
         }
-      })}
-    </ul>
-    {page>0&&<button onClick={prePage}>Previous</button>}
-    {!(page==(Math.ceil(listContext.list.length/settingsContext.numberOfItems)-1))&&<button onClick={nextPage}>Next</button>}
-    <button onClick={()=>{settingsContext.setSettings(null,!settingsContext.view)}}>Toggle View Completed Items</button>
-    </>
-  );
+        return page;
+    }
+
+    return (
+
+        <div>
+            <button onClick={toggleView} >{settingsContext.showCompleted.toString()}</button>
+            {activeList.map(item => (
+                <div key={item.id}>
+                    <p>{item.text}</p>
+                    <p><small>Assigned to: {item.assignee}</small></p>
+                    <p><small>Difficulty: {item.difficulty}</small></p>
+                    <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+                    <hr />
+                </div>
+            ))}
+
+            {activePage > 1 && <button onClick={() => { setActivePage(activePage - 1) }}>prev</button>}
+            {pages()}
+            {activePage < numOfPages && <button onClick={() => { setActivePage(activePage + 1) }} >next</button>}
+
+        </div>
+    )
 }
 
-
-export default TodoList;
+export default List
