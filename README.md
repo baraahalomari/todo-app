@@ -11,12 +11,12 @@ Incorporate configuration settings to the application.
 
 ## sandbox Link
 
-https://codesandbox.io/s/condescending-sunset-pv758
+https://codesandbox.io/s/wizardly-cdn-41chk
 
 
 ## PR Link
 
-https://github.com/baraahalomari/todo-app/pull/1
+https://github.com/baraahalomari/todo-app/pull/11
 
 ## UML
 
