@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Form from './Form';
+import Header from './Header';
 import List from './list';
 import { v4 as uuid } from 'uuid';
 import "@blueprintjs/core/lib/css/blueprint.css";
@@ -13,7 +14,6 @@ const ToDo = () => {
   function addItem(item) {
     let data = { id: uuid(), text: item.text, assignee: item.assignee, complete: false, difficulty: item.difficulty }
     setList([...list, data]);
-    
   }
 
 
@@ -34,15 +34,15 @@ const ToDo = () => {
     let incompleteCount = list.filter(item => !item.complete).length;
     setIncomplete(incompleteCount);
     document.title = `To Do List: ${incomplete}`;
-  }, [list]);
 
+  }, [list]);
 
 
 
   return (
     <>
+      <Header />
       <h1>To Do List: {incomplete} items pending</h1>
-
       <Form addItem={addItem} />
       <List list={list} toggleComplete={toggleComplete} />
       
