@@ -5,6 +5,7 @@ import { settingContext } from '../context/settingContext.js';
 function List(props) {
   
     const settingsContext = useContext(settingContext);
+
     const [activeList, setActiveList] = useState([]);
     const [activePage, setActivePage] = useState(1);
     const [numOfPages, setNumOfPages] = useState(Math.ceil(props.list.length / settingsContext.itemPerPage));
@@ -13,6 +14,7 @@ function List(props) {
     useEffect(() => {
         let start = (activePage - 1) * settingsContext.itemPerPage;
         let end = start + settingsContext.itemPerPage;
+
         setNumOfPages(Math.ceil(props.list.length / settingsContext.itemPerPage));
         setActiveList(props.list.slice(start, end));
     }, [props.list.length]);
@@ -39,17 +41,20 @@ function List(props) {
 
 
     function changeActivePage(num) {
+       
         setActivePage(num);
     }
 
 
     function toggleView() {
+       
         settingsContext.setShowCompleted(!settingsContext.showCompleted);
     }
 
 
     const pages = () => {
         let page = [];
+        
         for (let i = 1; i <= numOfPages; i++) {
             page.push(<button onClick={() => { changeActivePage(i) }} key={i}>{i}</button>)
         }
@@ -59,7 +64,9 @@ function List(props) {
 
     return (
         <div>
+         
             <button onClick={toggleView} >{settingsContext.showCompleted.toString()}</button>
+         
             {activeList.map(item => (
                 <div key={item.id}>
                     <p>{item.text}</p>
@@ -68,7 +75,8 @@ function List(props) {
                     <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
                     <hr />
                 </div>
-            ))}
+           
+           ))}
 
             {activePage > 1 && <button onClick={() => { setActivePage(activePage - 1) }}>prev</button>}
             {pages()}
