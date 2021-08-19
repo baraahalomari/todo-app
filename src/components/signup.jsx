@@ -37,19 +37,19 @@ const SignUp = () => {
 			</Then>
 			<Else>
 				
-				<form onSubmit={handleSubmitSignup} style={{marginLeft :'16%'}}>
+				<form onSubmit={handleSubmitSignup} >
 					{/* <input	type="email" name="email" placeholder="Enter Email" onChange={handleChangeEmail} */}
 					  {/* style={{borderRadius :'50px' , width:'25%'}}/> */}
 					<input type="text" name="username" placeholder="Enter Username" onChange={changeUsername}
 					 style={{borderRadius :'50px' , width:'20%'}}/>
-					<input type="password"	name="password" placeholder="Enter password" onChange={changePassword}  style={{borderRadius :'50px' , width:'20%'}}/>
+					<input type="password"	name="password" placeholder="Enter password" onChange={changePassword}  style={{ borderRadius: '15px', width: '30%', margin:'10px' }}/>
 
-					<select name="roles" id="roles" onChange={handleChangeRole}  style={{borderRadius :'50px' , height:'40px'}}>
+					<select name="roles" id="roles" onChange={handleChangeRole}  style={{ borderRadius: '15px', width: '10%', margin:'10px' }}>
 						<option value="user">user</option>
 						<option value="editor" >editor</option> <option value="admin">admin</option>
 					</select>
 
-					<button style={{borderRadius :'50px',width:'12%',height:'40px'  }}>SignUp</button>
+					<button style={{ borderRadius: '10px', width: '15%', height: '30px' ,margin :'5px' }}>SignUp</button>
 				</form>
 			</Else>
 		</If>

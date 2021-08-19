@@ -65,10 +65,10 @@ const Login = () => {
         <button onClick={contextType.logout}>Logout</button>
       </Then>
       <Else>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="username" placeholder="Enter Username" onChange={changeUsername} style={{ borderRadius: '50px', width: '30%' }} />
-          <input type="text" name="password" placeholder="Enter Password" onChange={changePassword} style={{ borderRadius: '50px', width: '30%' }} />
-          <button style={{ borderRadius: '50px', width: '10%', height: '40px', marginLeft: '80%' }}>Login</button>
+        <form onSubmit={handleSubmit} >
+          <input type="text" name="username" placeholder="Enter Username" onChange={changeUsername} style={{ borderRadius: '15px', width: '30%', margin:'10px' }} />
+          <input type="password" name="password" placeholder="Enter Password" onChange={changePassword} style={{ borderRadius: '15px', width: '30%' }} />
+          <button style={{ borderRadius: '10px', width: '15%', height: '30px' ,margin :'5px' }}>Login</button>
         </form>
       </Else>
     </If>

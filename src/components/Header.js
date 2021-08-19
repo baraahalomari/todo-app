@@ -11,9 +11,10 @@ function Header() {
                 <Navbar.Divider />
 
                 <a href="/"><Button className="bp3-minimal" icon="home" text="Home" /></a>
-                <a href="/settings"><Button className="bp3-minimal" icon="cog" text="Settings" /></a>          
-                
-                   </Navbar.Group>
+                <a href="/settings"><Button className="bp3-minimal" icon="cog" text="Settings" /></a>
+                <Login />
+                <SignUp style={{ width: '200px' }} />
+            </Navbar.Group>
         </Navbar>
 
     )
