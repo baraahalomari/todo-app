@@ -13,18 +13,18 @@ Incorporate configuration settings to the application.
 
 https://codesandbox.io/s/wizardly-cdn-41chk
 
-https://codesandbox.io/s/sweet-cookies-8dn0w
+https://codesandbox.io/s/focused-pine-ku1nb
 
-https://codesandbox.io/s/eloquent-glitter-1mmif
+
 
 
 ## PR Link
 
 https://github.com/baraahalomari/todo-app/pull/11
 
-https://github.com/baraahalomari/todo-app/pull/3
+https://github.com/baraahalomari/todo-app/pull/20
 
-https://github.com/baraahalomari/todo-app/pull/7
+
 
 ## UML
 
