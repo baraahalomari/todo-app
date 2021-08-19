@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React,{useState} from 'react';
 export const settingContext = React.createContext();
 
 function SettingContext(props) {
@@ -10,20 +10,6 @@ function SettingContext(props) {
         setItemPerPage,
         setShowCompleted,
     }
-
-    useEffect(() => {
-
-        const localSettings = JSON.parse(localStorage.getItem('settings'));
-        if (localSettings) {
-            setItemPerPage(Number(localSettings.itemPerPage));
-            setShowCompleted(showCompleted);
-        }
-    }, [])
-
-    useEffect(() => {
-    }, [itemPerPage])
-
-
     return (
         <settingContext.Provider value={state}>
             {props.children}
