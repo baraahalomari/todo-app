@@ -15,8 +15,11 @@ https://codesandbox.io/s/wizardly-cdn-41chk
 
 https://codesandbox.io/s/focused-pine-ku1nb
 
-https://codesandbox.io/s/musing-river-46b4x
+https://codesandbox.io/s/ancient-night-00wd2
 
+## Netlify Link
+
+https://goofy-hodgkin-b315fc.netlify.app/
 
 ## PR Link
 
@@ -24,7 +27,7 @@ https://github.com/baraahalomari/todo-app/pull/11
 
 https://github.com/baraahalomari/todo-app/pull/20
 
-https://github.com/baraahalomari/todo-app/pull/24
+https://github.com/baraahalomari/todo-app/pull/27
 
 ## UML
 
