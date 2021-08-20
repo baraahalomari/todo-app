@@ -70,9 +70,12 @@ function List(props) {
             {activeList.map(item => (
                 <div key={item.id}>
                     <p>{item.text}</p>
-                    <p><small>Assigned to: {item.assignee}</small></p>
-                    <p><small>Difficulty: {item.difficulty}</small></p>
-                    <div onClick={() => props.toggleComplete(item.id)}>Complete: {item.complete.toString()}</div>
+                    <h5>Assigned to:</h5>
+                    <p><small> {item.assignee}</small></p>
+                    <h5>Difficulty:</h5>
+                    <p><small> {item.difficulty}</small></p>
+                    <h5>Complete:</h5>
+                    <div onClick={() => props.toggleComplete(item.id)}> {item.complete.toString()}</div>
                     <hr />
                 </div>
            
