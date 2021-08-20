@@ -7,10 +7,7 @@ import ToDo from './components/todo.js';
 import Header from './components/Header';
 import SettingsForm from './components/settingsForm';
 import Auth from './components/Auth';
-// import Login from './components/Login';
-// import AuthProvider from './context/auth';
-// import SignUp from './components/signup';
-// import NavBar from './components/navigation';
+import '../src/components/todo.scss'
 
 
 
