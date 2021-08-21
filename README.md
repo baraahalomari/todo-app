@@ -11,11 +11,9 @@ Incorporate configuration settings to the application.
 
 ## sandbox Link
 
-https://codesandbox.io/s/wizardly-cdn-41chk
 
-https://codesandbox.io/s/focused-pine-ku1nb
 
-https://codesandbox.io/s/ancient-night-00wd2
+https://codesandbox.io/s/charming-rosalind-2452b
 
 ## Netlify Link
 
@@ -28,6 +26,8 @@ https://github.com/baraahalomari/todo-app/pull/11
 https://github.com/baraahalomari/todo-app/pull/20
 
 https://github.com/baraahalomari/todo-app/pull/27
+
+https://github.com/baraahalomari/todo-app/pull/29
 
 ## UML
 
