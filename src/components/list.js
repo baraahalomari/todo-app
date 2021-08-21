@@ -1,11 +1,10 @@
 import React, { useState, useContext, useEffect } from 'react'
 import { settingContext } from '../context/settingContext.js';
-
+import {  Badge } from 'react-bootstrap';
 
 function List(props) {
   
     const settingsContext = useContext(settingContext);
-
     const [activeList, setActiveList] = useState([]);
     const [activePage, setActivePage] = useState(1);
     const [numOfPages, setNumOfPages] = useState(Math.ceil(props.list.length / settingsContext.itemPerPage));
@@ -46,10 +45,10 @@ function List(props) {
     }
 
 
-    function toggleView() {
+    // function toggleView() {
        
-        settingsContext.setShowCompleted(!settingsContext.showCompleted);
-    }
+    //     settingsContext.setShowCompleted(!settingsContext.showCompleted);
+    // }
 
 
     const pages = () => {
@@ -65,7 +64,7 @@ function List(props) {
     return (
         <div>
          
-            <button onClick={toggleView} >{settingsContext.showCompleted.toString()}</button>
+            {/* <button onClick={toggleView} >{settingsContext.showCompleted.toString()}</button> */}
          
             {activeList.map(item => (
                 <div key={item.id}>
@@ -75,7 +74,7 @@ function List(props) {
                     <h5>Difficulty:</h5>
                     <p><small> {item.difficulty}</small></p>
                     <h5>Complete:</h5>
-                    <div onClick={() => props.toggleComplete(item.id)}> {item.complete.toString()}</div>
+                    <Badge onClick={() => props.toggleComplete(item._id ,'put')}> {item.complete ? "Complete" : "Pending..."}</Badge>
                     <hr />
                 </div>
            
