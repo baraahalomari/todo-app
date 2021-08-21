@@ -4,8 +4,18 @@ import Header from './Header';
 import List from './list';
 import { v4 as uuid } from 'uuid';
 import "@blueprintjs/core/lib/css/blueprint.css";
+import axios from 'axios';
 
 const todoAPI = 'https://api-js401.herokuapp.com/api/v1/todo';
+
+
+let config = {
+  headers: {
+    mode: 'cors',
+    cache: 'no-cache',
+    'Content-Type': 'application/json',
+  },
+};
 
 const ToDo = () => {
 
@@ -80,7 +90,21 @@ const ToDo = () => {
         .catch(console.error);
     }
   };
-  
+
+  const handleDelete = async (id) => {
+    let url = `${todoAPI}/${id}`;
+    const method = 'delete';
+    const results = await axios[method](url, config);
+    setList(
+      list.filter(
+        (listItem) => listItem._id !== results.data._id,
+      ),
+    );
+  }
+
+
+
+
   useEffect(() => {
     let incompleteCount = list.filter(item => !item.complete).length;
     setIncomplete(incompleteCount);
@@ -95,8 +119,8 @@ const ToDo = () => {
 
       <h1>To Do List: {incomplete} items pending</h1>
       <Form addItem={addItem} />
-      <List list={list} toggleComplete={toggleComplete} />
-      
+      <List list={list} toggleComplete={toggleComplete} handleDelete={handleDelete} />
+
     </>
   );
 };
